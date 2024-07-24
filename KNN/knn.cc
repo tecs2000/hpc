@@ -3,14 +3,56 @@
 
 using namespace std;
 
-void print_project_info(char *exec_name)
+class Point
 {
-    cout << exec_name << " Version " << Knn_VERSION_MAJOR
-         << "." << Knn_VERSION_MINOR << endl;
-}
+public:
+    vector<float> features;
+    char category;
+};
+
+vector<Point> parse_file(char *path);
 
 int main(int argc, char *argv[])
 {
-    print_project_info(argv[0]);
+    if (argc < 3)
+    {
+        cout << "Usage: " << argv[0] << " <path-to-file> <k>" << std::endl;
+        return 1;
+    }
+
+    vector<Point> dataset = parse_file(argv[1]);
+
     return 0;
+}
+
+vector<Point> parse_file(char *path)
+{
+    vector<Point> dataset;
+
+    freopen(path, "r", stdin);
+
+    string row;
+    while (getline(cin, row))
+    {
+        Point entry;
+        string digit = "";
+        for (int i = 0; i < row.size(); i++)
+        {
+            if (i == row.size() - 1) {
+                entry.category = digit[0];
+            }
+            else if (row[i] != ',') {
+                digit += row[i];
+            }
+            else
+            {
+                entry.features.push_back(stof(digit));
+                digit = "";
+            }
+        }
+
+        dataset.push_back(entry);
+    }
+
+    return dataset;
 }
