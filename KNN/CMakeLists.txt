@@ -11,6 +11,7 @@ project(
 # CXX Version
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
+set(CMAKE_CXX_FLAGS ${CMAKE_CXX_FLAGS} "-O3")
 
 # Configure single source of truth header file 
 configure_file(knn.h.in knn.h)
