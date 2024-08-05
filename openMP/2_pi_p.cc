@@ -31,7 +31,7 @@ int main()
         }
 
         #pragma omp atomic
-        pi += sum * step;
+            pi += sum * step;
     }
 
     auto stop = chrono::high_resolution_clock::now();
