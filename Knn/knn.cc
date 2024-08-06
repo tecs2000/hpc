@@ -89,7 +89,6 @@ string classify_entry(const Entry &point)
 
     pair<string, int> winner = {"", 0};
 
-#pragma omp parallel for
     for (int i = 0; i < k; i++)
     {
         const string &category = distances[i].second;
