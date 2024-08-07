@@ -4,7 +4,7 @@ Implementing some well-known algorithms using high-performance computing (HPC) t
 
 ## Tips
 
-For tips on how to benchmark a parallel program, please refer to the [benchmarking tutorial](https://github.com/tecs2000/hpc/blob/main/benchmarking.md). To apply all the suggestions mentioned in the tutorial in an automated way, run the `env_prep.sh` script.
+For tips on how to benchmark a parallel program, please refer to the [benchmarking tutorial](https://github.com/tecs2000/hpc/blob/main/bench_tutorial.md). To apply all the suggestions mentioned in the tutorial in an automated way, run the `env_prep.sh` script.
 
 **Note:** The `env_prep.sh` script will terminate all non-essential programs running on your system and log your user out. When logged in again, run the `run_bench.sh` script to perform the benchmarking.
 
