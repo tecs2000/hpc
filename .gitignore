@@ -1,6 +1,8 @@
-Cmake-tutorial/*/build/*
-Cmake-tutorial/CMakeFiles
+Tutorials/Cmake-tutorial/*/build/*
+Tutorials/Cmake-tutorial/CMakeFiles
 */build/*
 !*/build/.gitkeep
 *.out
 *.o
+*.*
+!*/
