@@ -8,7 +8,7 @@ For tips on how to benchmark a parallel program, please refer to the [benchmarki
 
 **Note:** The `env_prep.sh` script will terminate all non-essential programs running on your system and log your user out. When logged in again, run the `run_bench.sh` script to perform the benchmarking.
 
-## Automated Benchmark Preparation Script
+## Automated Environment Preparation
 
 The `env_prep.sh` script is designed to set up your environment for accurate benchmarking by applying several system optimizations. Here’s what the script does:
 
