@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Function to check if a command was successful and exit if not
 check_command() {
   if [ $? -ne 0 ]; then
@@ -17,7 +19,7 @@ run_benchmark() {
   echo "Running $program for $nruns times"
 
   sudo perf stat -r $nruns -- sudo nice -n -$niceness $program "${program_parameters[@]}"
-  check_command "Setting process priority"
+  check_command "Running benchmark"
 }
 
 # Usage: ./benchmark_prep.sh <nruns> <nwarmup-runs> <niceness> <program> <program-parameters>
@@ -33,8 +35,14 @@ program=$4
 shift 4
 program_parameters=("$@")
 
-echo "Warming the system up..."
-run_benchmark $nwarmup_runs $niceness $program "${program_parameters[@]}"
+# Warm-up phase
+if [ $nwarmup_runs -gt 0 ]; then
+  echo "Warming the system up..."
+  run_benchmark $nwarmup_runs $niceness $program $outdir "${program_parameters[@]}"
+fi
 
-echo "Started benchmarking process"
-run_benchmark $nruns $niceness $program "${program_parameters[@]}"
+# Benchmark phase
+if [ $nruns -gt 0 ]; then
+  echo "Started benchmarking process"
+  run_benchmark $nruns $niceness $program $outdir "${program_parameters[@]}"
+fi
