@@ -1,3 +1,0 @@
-/home/tecs/Documents/tecs/hpc/Cmake-tutorial/Step1/build/CMakeFiles/Tutorial.dir
-/home/tecs/Documents/tecs/hpc/Cmake-tutorial/Step1/build/CMakeFiles/edit_cache.dir
-/home/tecs/Documents/tecs/hpc/Cmake-tutorial/Step1/build/CMakeFiles/rebuild_cache.dir
