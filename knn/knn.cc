@@ -45,8 +45,6 @@ int main(int argc, char *argv[])
 
     float error = 0;
 
-    omp_set_num_threads(4);
-
 #pragma omp parallel for reduction(+ : error) schedule(static)
     for (size_t i = 0; i < testset.size(); ++i)
     {

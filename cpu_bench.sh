@@ -5,13 +5,15 @@ create_dir() {
 
   if [[ ! -d $outdir ]]; then
     mkdir $outdir
+  else
+    rm -r $outdir/*
   fi
 }
 
 export_debug_variables() {
- export OMP_DISPLAY_AFFINITY="TRUE"
- export OMP_DISPLAY_ENV="VERBOSE"
- export OMP_AFFINITY_FORMAT="Nesting_Lvl %0.1L, Thread %.4n: Cores %.16{thread_affinity}"
+  export OMP_DISPLAY_AFFINITY="TRUE"
+  export OMP_DISPLAY_ENV="VERBOSE"
+  export OMP_AFFINITY_FORMAT="Nesting_Lvl %0.1L, Thread %.4n: Cores %.16{thread_affinity}"
 }
 
 export_variables() {
@@ -30,18 +32,19 @@ start_bench() {
   export_variables
 #  export_debug_variables
 
-  # Warm the system up
-  echo "Warming up the system..."
-  for j in $(seq 1 $nwarmup); do
-    nice -n -$niceness $program "${program_parameters[@]}" >>$outdir/warmup_data.out
-  done
-
   echo "Starting benching process..."
   for i in 1 2 4; do
-    echo "-- Benching with $i CPU(s)"
+    # Warm the system up
+    echo "-- Warming $i core(s) up..."
+    export OMP_NUM_THREADS=$i
+    for j in $(seq 1 $nwarmup); do
+      nice -n -$niceness $program "${program_parameters[@]}" >>$outdir/warmup_data.out
+    done
+
+    echo "-- Benching with $i CPU(s)..."
+    export OMP_NUM_THREADS=$i
     outfile=bench_${i}_cpus.out
     for j in $(seq 1 $nruns); do
-      export OMP_NUM_THREADS=$i
       nice -n -$niceness $program "${program_parameters[@]}" >>$outdir/$outfile
     done
   done
