@@ -1,0 +1,3 @@
+/home/tecs/Documents/tecs/hpc/Knn/build/CMakeFiles/Knn.dir
+/home/tecs/Documents/tecs/hpc/Knn/build/CMakeFiles/edit_cache.dir
+/home/tecs/Documents/tecs/hpc/Knn/build/CMakeFiles/rebuild_cache.dir

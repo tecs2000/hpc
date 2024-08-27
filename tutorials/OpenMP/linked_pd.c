@@ -9,15 +9,20 @@
 #define FS 38
 #endif
 
+long long fibNumbers[44] = {0};
+
 struct node
 {
-    int data; // pos in the fib seq
-    int fibdata;
+    int data; // n in the fib seq
+    int fibdata; // fib computation
     struct node *next;
 };
 
 int fib(int n)
 {
+    if (fibNumbers[n])
+        return fibNumbers[n];
+
     int x, y;
     if (n < 2)
     {
@@ -26,7 +31,12 @@ int fib(int n)
     else
     {
         x = fib(n - 1);
+        fibNumbers[n - 1] = x;
+
         y = fib(n - 2);
+        fibNumbers[n - 2] = y;
+
+        fibNumbers[n] = x + y;
         return (x + y);
     }
 }
@@ -54,7 +64,6 @@ struct node *init_list(struct node *p)
         p->next = temp;
         p = temp;
         p->data = FS + i + 1;
-        p->fibdata = i + 1;
     }
     p->next = NULL;
     return head;
@@ -66,6 +75,9 @@ int main(int argc, char *argv[])
     struct node *p = NULL;
     struct node *temp = NULL;
     struct node *head = NULL;
+
+    fibNumbers[0] = 0;
+    fibNumbers[1] = 1;
 
     printf("Process linked list\n");
     printf("  Each linked list node will be processed by function 'processwork()'\n");

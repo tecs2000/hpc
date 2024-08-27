@@ -1,0 +1,1 @@
+/usr/bin/c++ -O3;-fopenmp CMakeFiles/Knn.dir/knn.cc.o -o Knn 
